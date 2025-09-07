@@ -1,0 +1,87 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #d8cfcf;                 
+  border-bottom: 1px solid #eaeaea; 
+  box-sizing: border-box;
+}
+
+.logoPadre {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.logoHijo {
+  width: 100px;
+  border: 2px solid black;
+  border-radius: 1000px;
+  display: block;
+}
+
+.padreHeader {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.hijoHeader {
+  text-decoration: none;
+  color: #111;                      
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+nav form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.search {
+  padding: 8px 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  min-width: 200px;
+  outline: none;
+}
+
+.boton {
+  padding: 8px 12px;
+  border: 1px solid #0ea5e9;
+  background: #0ea5e9;
+  color: #fff;
+  border-radius: 8px;
+}
+.boton:hover { filter: brightness(.95); }
+
+.boton2::before { content: "🔍"; }
+
+@media (max-width: 860px) {
+  nav{
+    flex-wrap: wrap;
+  }
+  .logoPadre { 
+    order: 1; 
+  }
+  .padreHeader { 
+    order: 2; 
+    width: 100%; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 10px 16px;
+  }
+  nav form {
+    order: 3; 
+    width: 100%;
+  }
+  .search { 
+    width: 100%; 
+    min-width: 0; 
+  }
+}
+
