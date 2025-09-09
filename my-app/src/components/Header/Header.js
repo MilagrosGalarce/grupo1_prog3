@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import MiFormulario from '../MiFormulario/MiFormulario';
 import './styles.css';
 
 function Header() {
@@ -16,10 +17,7 @@ function Header() {
                 <li><Link to='/favorites' className='hijoHeader'>Favorites</Link></li>
             </ul>
 
-            <form action="" method="GET" className="">
-                <input type="text" name="q" placeholder="Buscar…" className="search" />
-                <button type="submit" className="boton"><i className="boton2"></i></button>
-            </form>
+            <MiFormulario />
 
         </nav>
     )
