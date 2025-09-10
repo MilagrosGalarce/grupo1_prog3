@@ -7,7 +7,7 @@ class Card extends Component {
     super(props);
     this.state = {
       verMas: false,
-      textoBoton: 'See more',
+      textoBoton: 'See description',
       informacionItem: props.data
     };
   }
@@ -15,7 +15,7 @@ class Card extends Component {
   verMasVerMenos() {
     this.setState({
       verMas: !this.state.verMas,
-      textoBoton: this.state.textoBoton === 'See more' ? 'See less' : 'See more'
+      textoBoton: this.state.textoBoton === 'See description' ? 'See less' : 'See description'
     });
   }
 

@@ -8,7 +8,7 @@ function Secciones({ titulo, videos, toAll }) {
     <section>
       <div className="d-flex justify-content-between align-items-baseline">
         <h2>{titulo}</h2>
-        <Link to={toAll}>Se all</Link> 
+        <Link to={toAll}>See all</Link> 
       </div>
 
       <div className="cards row">
