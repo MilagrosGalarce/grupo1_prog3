@@ -2,9 +2,9 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer';
-import './css/styles.css';
 import Home from "./screens/Home/Home";
-import NotFound from './screens/Home/NotFound/NotFound';
+import Movies from './screens/Movies/Movies';
+import './css/styles.css';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
 
       <Switch>
         <Route path="/" component={Home} exact={true}/>
-        <Route path='/notFound' component={NotFound}/>
+        <Route path='/movies' component={Movies} exact={true}/>
       </Switch>
 
       <Footer />
