@@ -27,7 +27,7 @@ class Movies extends Component {
     }
 
     cargarMas() {
-        fetch(`https://api.themoviedb.org/3/movie/now_playing?language=es-ES&page=${this.state.paginaALlamar}`)
+        fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES&page=${this.state.paginaALlamar}`)
             .then(resp => resp.json())
             .then(data =>
                 this.setState({

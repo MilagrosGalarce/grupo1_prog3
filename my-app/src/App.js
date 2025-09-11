@@ -4,6 +4,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer';
 import Home from "./screens/Home/Home";
 import Movies from './screens/Movies/Movies';
+import Series from './screens/Series/Series';
 import './css/styles.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact={true}/>
         <Route path='/movies' component={Movies} exact={true}/>
+        <Route path='/series' component={Series} exact={true}/>
       </Switch>
 
       <Footer />
