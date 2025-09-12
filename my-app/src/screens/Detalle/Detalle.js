@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import './styles.css';
 
 class Detalle extends Component {
@@ -79,4 +79,4 @@ class Detalle extends Component {
   }
 }
 
-export default Detalle;
+export default Detalle;*/

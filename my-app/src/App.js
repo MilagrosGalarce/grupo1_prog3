@@ -5,9 +5,9 @@ import Footer from './components/Footer/Footer';
 import Home from "./screens/Home/Home";
 import Movies from './screens/Movies/Movies';
 import Series from './screens/Series/Series';
-import Detalle from './screens/Detalle/Detalle'
-
+/*import Detalle from './screens/Detalle/Detalle'*/
 import './css/styles.css';
+import NotFound from './screens/NotFound/NotFound';
 
 function App() {
   return (
@@ -15,12 +15,12 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path="/" component={Home} exact={true}/>
-        <Route path='/movies' component={Movies} exact={true}/>
-        <Route path='/series' component={Series} exact={true}/>
-        <Route path='/detalle/:id' component={Detalle} exact={true}/>
+        <Route path="/" component={Home} exact={true} />
+        <Route path='/movies' component={Movies} exact={true} />
+        <Route path='/series' component={Series} exact={true} />
+        {/*<Route path='/detalle/:id' component={Detalle} exact={true} /> */}
+        <Route component={NotFound} />
       </Switch>
-
       <Footer />
     </BrowserRouter>
 
