@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 import './styles.css';
 
 class Detalle extends Component {
@@ -6,77 +6,96 @@ class Detalle extends Component {
     super(props);
     this.state = {
       item: null,
-      type: props.location?.state?.type || null,
+      type: null,
       verMas: false,
-      textoBoton: 'Ver más',
+      textoBoton: 'Ver mas',
       error: '',
       loading: true
     };
   }
 
   componentDidMount() {
-    const {type}  = this.state; // TENGO QUE CORREGIR ESTO PARA PODER ACCEDER A CADA UNO DE LOS DETALLES
-    const id = this.props.match.params.id;
-
-    if (!type) {
-      this.setState({ loading: false, error: 'Falta el tipo (movie/tv) en el link.' });
-      return;
+     this.cargar(); 
     }
 
-    fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES`)
-      .then(r => r.json())
-      .then(data => this.setState({ item: data, loading: false }))
-      .catch(() => this.setState({ loading: false, error: 'No se pudo cargar el detalle.' }));
-  }
+  componentDidUpdate(prevProps) {
+      let id = this.props.match.params.id;
+      if (prevProps.match.params.id != id) 
+        this.cargar();
+    }
+  
 
-  toggleVerMas() {
-    this.setState(prev => ({
-      verMas: !prev.verMas,
-      textoBoton: prev.textoBoton === 'Ver más' ? 'Ver menos' : 'Ver más'
-    }));
-  }
+    cargar () {
+      let id = this.props.match.params.id;
+      
+      this.setState = {
+        item: null,
+        type: null,
+        verMas: false,
+        error: '',
+        loading: true
+      };
+
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES`)
+      .then(response => response.json())
+      .then(data => this.setState(
+        { item: data,
+          type: 'movie',
+          loading: false }))
+      .catch(() => {
+        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES`)
+        .then(response => response.json())
+        .then(data => this.setState(
+        { item: data,
+          type: 'serie',
+          loading: false }))
+        .catch(() => this.setState(
+          { loading: false,
+           error: 'No se pudo cargar el detalle.' }
+          ));
+  })
+}
 
   render() {
     const { item, type, verMas, textoBoton, error, loading } = this.state;
 
-    if (loading) return <div className="detalle-container"><h2>Cargando...</h2></div>;
-    if (error) return <div className="detalle-container"><p className="error">{error}</p></div>;
-    if (!item) return null;
+    if (loading) 
+      return <div className="detalle-container"><h2>Cargando...</h2></div>;
+    if (error) 
+      return <div className="detalle-container"><p className="error">{error}</p></div>;
+    if (!item) 
+      return null;
 
-    const titulo = type == 'movie' ? item.title : item.name;
-    const fecha = type == 'movie' ? item.release_date : item.first_air_date;
-    const poster = item.poster_path ? `'https://image.tmdb.org/t/p/w500'${item.poster_path}` : '';
-    const rating = item.vote_average != null ? item.vote_average :
-    const generos = 
-    const sinopsis = item.overview || 'sin descripción.';
+    let titulo = type === 'movie' ? item.title : item.name;
+    let fecha = type === 'movie' ? item.release_date : item.first_air_date;
+    let poster = item.poster_path ? `'https://image.tmdb.org/t/p/w500'${item.poster_path}` : '';
+    let rating = item.vote_average || 'No se han publicado ratings.';
+    let genero = item.genres || '';
+    let sinopsis = item.overview || 'Sin descripción.';
 
     let duracion = null;
     if (type === 'movie' && item.runtime != null) {
-      duracion = this.item.runtime;
-    } else if (type === 'tv' && item.episode_run_time != null) {
-      duracion = this.item.episode_run_time + 'por episodio'; // corregir esto
+      duracion = `${item.runtime} minutos`;
+    } else if (type === 'serie' && item.episode_run_time != null) {
+      duracion = this.item.episode_run_time + 'por episodio'; 
     }
 
     return (
       <div className="detalle-container">
         <h1>{titulo}</h1>
-
-        falta imagen
-
+        {poster && 
+        (<img src={`https://image.tmdb.org/t/p/w342${item.poster_path}`}
+            alt=""
+            className="card-img-top"
+          />)}
         <p>Calificación: {rating}</p>
         <p>Fecha de estreno: {this.fecha(fecha)}</p>
         <p>Duración:{duracion}</p>
         <p>Sinopsis:{sinopsis}</p>
-        <p>Genero:{generos}</p>
-        
-
-
-        <button onClick={() => this.toggleVerMas()} className="btn">
-          {textoBoton}
-        </button>
-      </div>
-    );
+        <p>Genero:{genero}</p>
+        </div>
+     );
   }
 }
 
-export default Detalle;*/
+export default Detalle;
