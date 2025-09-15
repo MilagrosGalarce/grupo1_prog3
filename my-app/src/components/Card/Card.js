@@ -6,13 +6,26 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      esFavorito: false,
       verMas: false,
       textoBoton: 'See description',
       informacionItem: props.data,
       favorito: false,
       textoFavorito: 'Agregar a favoritos'
     };
+
   }
+  componentDidMount() {
+    let recuperoFavoritos = localStorage.getItem('favoritos');
+    let favoritosParseados = JSON.parse(recuperoFavoritos);
+
+    if (favoritosParseados) {
+      if (favoritosParseados.includes(this.state.informacionItem.id)) {
+        this.setState({esFavorito : true})
+      }
+    }
+
+   }
 
   verMasVerMenos() {
     this.setState({
@@ -21,17 +34,51 @@ class Card extends Component {
     });
   }
 
-  agregarFavorito() {
+
+  agregarFavorito(id) {
+
+    console.log(id)
+    let recuperoFavoritos = localStorage.getItem('favoritos');
+    if (recuperoFavoritos == null) {
+      let favoritos = [id];
+      let favoritosToString = JSON.stringify(favoritos);
+      localStorage.setItem('favoritos', favoritosToString);
+      this.setState({
+        esFavorito: true
+      });
+    } else {
+      let favoritosParseados = JSON.parse(recuperoFavoritos);
+      favoritosParseados.push(id)
+      let favoritosToString = JSON.stringify(favoritosParseados);
+      localStorage.setItem('favoritos', favoritosToString);
+      this.setState({
+        esFavorito: true
+      });
+    }
+    
+
+  };
+
+  sacarFavorito(id) {
+    let recuperoFavoritos = localStorage.getItem('favoritos');
+    let favoritosParseados = JSON.parse(recuperoFavoritos);
+
+    let filtroFavoritos =  favoritosParseados.filter(
+      function (filtrado) {
+        return  filtrado !== id
+      }
+    )
+
+    let favoritosToString = JSON.stringify(filtroFavoritos);
+    localStorage.setItem('favoritos', favoritosToString);
+
     this.setState({
-      favorito: !this.state.favorito,
-      textoFavorito: this.state.favorito
-        ? 'Agregar a favoritos'
-        : 'Sacar de favoritos'
-    });
+        esFavorito: false
+      });
+
+    console.log(filtroFavoritos)
   }
-
-
-
+  
   render() {
     const item = this.state.informacionItem;
     const titulo = item.title || item.name;
@@ -57,12 +104,19 @@ class Card extends Component {
             {this.state.textoBoton}
           </button>{' '}
 
-          <button
-            onClick={() => this.agregarFavorito()}
+          {
+            this.state.esFavorito ?  
+            <button
+            onClick={() => this.sacarFavorito(item.id)}
             className="btn btn-warning btn-sm"
-          >
-            {this.state.textoFavorito}
-          </button>{' '}
+          > Sacar
+          </button> : <button
+            onClick={() => this.agregarFavorito(item.id)}
+            className="btn btn-warning btn-sm"
+          > Agregar
+          </button>
+
+          }
 
           <Link to={`/detalle/${item.id}`} className="btn btn-outline-primary btn-sm">
             Ver detalle
