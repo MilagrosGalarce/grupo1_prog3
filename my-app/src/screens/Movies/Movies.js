@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Card from '../../components/Card/Card'
+import MiFormulario from '../../components/MiFormulario/MiFormulario'
 
 class Movies extends Component {
     constructor(props) {
@@ -41,6 +42,15 @@ class Movies extends Component {
         return (
             <div>
                 <h1>Películas</h1>
+                <form  className="search-form">
+                    <input
+                        type="text"
+                        placeholder="Buscar…"
+                        value={this.state.busqueda}
+                        onChange={this.controlarInput}
+                        name="searchData"
+                    />
+                </form>
                 {this.state.pedidoInicialCompleto ? (
                     <>
                         <div className="cards row">
