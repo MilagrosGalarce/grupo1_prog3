@@ -8,7 +8,9 @@ class Card extends Component {
     this.state = {
       verMas: false,
       textoBoton: 'See description',
-      informacionItem: props.data
+      informacionItem: props.data,
+      favorito: false,
+      textoFavorito: 'Agregar a favoritos'
     };
   }
 
@@ -18,6 +20,17 @@ class Card extends Component {
       textoBoton: this.state.textoBoton === 'See description' ? 'See less' : 'See description'
     });
   }
+
+  agregarFavorito() {
+    this.setState({
+      favorito: !this.state.favorito,
+      textoFavorito: this.state.favorito
+        ? 'Agregar a favoritos'
+        : 'Sacar de favoritos'
+    });
+  }
+
+
 
   render() {
     const item = this.state.informacionItem;
@@ -44,13 +57,20 @@ class Card extends Component {
             {this.state.textoBoton}
           </button>{' '}
 
+          <button
+            onClick={() => this.agregarFavorito()}
+            className="btn btn-warning btn-sm"
+          >
+            {this.state.textoFavorito}
+          </button>{' '}
+
           <Link to={`/detalle/${item.id}`} className="btn btn-outline-primary btn-sm">
             Ver detalle
           </Link>
         </div>
       </article>
     );
-    
+
   }
 }
 
