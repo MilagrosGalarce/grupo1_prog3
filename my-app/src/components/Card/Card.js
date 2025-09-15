@@ -82,6 +82,7 @@ class Card extends Component {
   render() {
     const item = this.state.informacionItem;
     const titulo = item.title || item.name;
+    let verificacion = this.props.type == 'serie' ? `/serie/detalle/${item.id}` : `/movie/detalle/${item.id}`;
 
     return (
       <article className="single-card-movie">
@@ -117,8 +118,9 @@ class Card extends Component {
           </button>
 
           }
+          
 
-          <Link to={`/detalle/${item.id}`} className="btn btn-outline-primary btn-sm">
+          <Link to={verificacion} className="btn btn-outline-primary btn-sm">
             Ver detalle
           </Link>
         </div>

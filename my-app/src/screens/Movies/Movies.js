@@ -56,7 +56,7 @@ class Movies extends Component {
                         <div className="cards row">
                             {this.state.peliculas.length
                                 ? this.state.peliculas.map((item) => (
-                                    <Card key={item.id} data={item} />
+                                    <Card key={item.id} data={item} type="movie"/>
                                 ))
                                 : <p>No hay resultados.</p>}
                         </div>

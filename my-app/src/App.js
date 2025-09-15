@@ -5,7 +5,9 @@ import Footer from './components/Footer/Footer';
 import Home from "./screens/Home/Home";
 import Movies from './screens/Movies/Movies';
 import Series from './screens/Series/Series';
-import Detalle from './screens/Detalle/Detalle'
+import MovieDetalle from './screens/MovieDetalle/MovieDetalle';
+import SerieDetalle from './screens/SerieDetalle/SerieDetalle';
+// import Detalle from './screens/Detalle/Detalle' --> hago uno por cada
 import Favoritos from './screens/Favoritos/Favoritos';
 import './css/styles.css';
 import NotFound from './screens/NotFound/NotFound';
@@ -19,7 +21,8 @@ function App() {
         <Route path="/" component={Home} exact={true} />
         <Route path='/movies' component={Movies} exact={true} />
         <Route path='/series' component={Series} exact={true} />
-        <Route path='/detalle/:id' component={Detalle} exact={true} />
+        <Route path='/movie/detalle/:id' component={MovieDetalle} exact={true} />
+        <Route path='/serie/detalle/:id' component={SerieDetalle} exact={true} />
         <Route path='/favorites' component={Favoritos} exact={true} />
         <Route component={NotFound} />
       </Switch>

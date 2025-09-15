@@ -46,7 +46,7 @@ class Series extends Component {
                         <div className="cards row">
                             {this.state.series.length
                                 ? this.state.series.map((item) => (
-                                    <Card key={item.id} data={item} />
+                                    <Card key={item.id} data={item} type="serie" />
                                 ))
                                 : <p>No hay resultados.</p>}
                         </div>
