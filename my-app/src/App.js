@@ -11,6 +11,7 @@ import SerieDetalle from './screens/SerieDetalle/SerieDetalle';
 import Favoritos from './screens/Favoritos/Favoritos';
 import './css/styles.css';
 import NotFound from './screens/NotFound/NotFound';
+import Resultados from './screens/Resultados/Resultados'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/movie/detalle/:id' component={MovieDetalle} exact={true} />
         <Route path='/serie/detalle/:id' component={SerieDetalle} exact={true} />
         <Route path='/favorites' component={Favoritos} exact={true} />
+        <Route path='/resultados/:busqueda/:tipo' component={Resultados} exact={true} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

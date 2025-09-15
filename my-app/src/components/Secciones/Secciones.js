@@ -8,12 +8,12 @@ function Secciones({ titulo, videos, toAll }) {
     <section>
       <div className="d-flex justify-content-between align-items-baseline">
         <h2>{titulo}</h2>
-        <Link to={toAll}>See all</Link> 
+        {toAll == false ? "" :  <Link to={toAll}>See all</Link>} 
       </div>
 
       <div className="cards row">
         {videos && videos.length
-          ? videos.map((item, idx) => (idx < 4 ? <Card key={item.id} data={item} /> : null))
+          ? videos.map((item, idx) => (  <Card key={item.id} data={item} />))
           : <p>No hay resultados.</p>}
       </div>
     </section>
