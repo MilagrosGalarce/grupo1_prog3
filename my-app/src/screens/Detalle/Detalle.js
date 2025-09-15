@@ -24,17 +24,16 @@ class Detalle extends Component {
         this.cargar();
     }
   
-
     cargar () {
       let id = this.props.match.params.id;
-      
-      this.setState = {
+
+      this.setState({
         item: null,
         type: null,
         verMas: false,
         error: '',
         loading: true
-      };
+      });
 
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES`)
       .then(response => response.json())
@@ -56,6 +55,13 @@ class Detalle extends Component {
   })
 }
 
+toggleVerMas() {
+  this.setState((prevState) => ({
+    verMas: !prevState.verMas,
+    textoBoton: prevState.textoBoton === "Ver más" ? "Ver menos" : "Ver más"
+  }));
+}
+
   render() {
     const { item, type, verMas, textoBoton, error, loading } = this.state;
 
@@ -67,18 +73,19 @@ class Detalle extends Component {
       return null;
 
     let titulo = type === 'movie' ? item.title : item.name;
-    let fecha = type === 'movie' ? item.release_date : item.first_air_date;
-    let poster = item.poster_path ? `'https://image.tmdb.org/t/p/w500'${item.poster_path}` : '';
+    let fecha = type === 'movie' ? item.release_date : item.first_air_date || 'No se ha publicado una fecha de estreno.';
+    let poster = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '';
     let rating = item.vote_average || 'No se han publicado ratings.';
-    let genero = item.genres || '';
+    let generos = (item.genres || []).map(genero => 
+      (<li> {genero.name} </li>) || 'No se ha encontrado un genero.');
     let sinopsis = item.overview || 'Sin descripción.';
 
     let duracion = null;
     if (type === 'movie' && item.runtime != null) {
       duracion = `${item.runtime} minutos`;
-    } else if (type === 'serie' && item.episode_run_time != null) {
-      duracion = this.item.episode_run_time + 'por episodio'; 
-    }
+    } else if (type === 'tv' && item.episode_run_time && item.episode_run_time.length > 0) {
+      duracion = `${item.episode_run_time[0]} min (por episodio)`;
+    }    
 
     return (
       <div className="detalle-container">
@@ -89,10 +96,10 @@ class Detalle extends Component {
             className="card-img-top"
           />)}
         <p>Calificación: {rating}</p>
-        <p>Fecha de estreno: {this.fecha(fecha)}</p>
+        <p>Fecha de estreno: {fecha}</p>
         <p>Duración:{duracion}</p>
         <p>Sinopsis:{sinopsis}</p>
-        <p>Genero:{genero}</p>
+        <p>Genero/s:{generos}</p>
         </div>
      );
   }
