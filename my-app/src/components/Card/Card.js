@@ -50,6 +50,7 @@ class Card extends Component {
         </div>
       </article>
     );
+    
   }
 }
 

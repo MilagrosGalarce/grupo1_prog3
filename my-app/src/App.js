@@ -6,6 +6,7 @@ import Home from "./screens/Home/Home";
 import Movies from './screens/Movies/Movies';
 import Series from './screens/Series/Series';
 import Detalle from './screens/Detalle/Detalle'
+import Card from './components/Card/Card';
 import './css/styles.css';
 import NotFound from './screens/NotFound/NotFound';
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/movies' component={Movies} exact={true} />
         <Route path='/series' component={Series} exact={true} />
         <Route path='/detalle/:id' component={Detalle} exact={true} />
+        <Route path='/favorites' component={Card} exact={true} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
