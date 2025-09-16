@@ -89,3 +89,36 @@ nav {
         grid-template-columns: 4fr 3fr;
     }
 }
+
+
+section{
+  margin: 22px 0 34px;
+}
+
+
+.d-flex{ 
+    display: flex; 
+}
+
+.justify-content-between{ 
+    justify-content: space-between; 
+}
+
+.align-items-baseline{ 
+    align-items: baseline; 
+}
+
+section .d-flex a{
+  font-size: 14px;
+  text-decoration: none;
+  color: black;
+}
+
+.cards{
+  margin: 0;                   
+  padding: 6px 0 10px;
+  display: grid;
+  gap: 22px;
+  justify-content: center;      
+  justify-items: center;        
+}

@@ -14,7 +14,7 @@ class Card extends Component {
       textoFavorito: 'Agregar a favoritos'
     };
 
-  }
+  }Fsingl
   componentDidMount() {
     let recuperoFavoritos = localStorage.getItem('favoritos');
     let favoritosParseados = JSON.parse(recuperoFavoritos);

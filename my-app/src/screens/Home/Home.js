@@ -14,19 +14,18 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // Más vistas (popular)
+  
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES&page=1')
-      .then(r => r.json())
-      .then(d => {
-        this.setState({ masVistas: d.results, cargandoMasVistas: false })
-        console.log(d)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ masVistas: data.results, cargandoMasVistas: false })
+        console.log(data)
       })
       .catch(() => this.setState({ masVistas: [] }));
 
-    // Mejor valoradas (top_rated)
     fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES&page=1')
-      .then(r => r.json())
-      .then(d => this.setState({ mejorValoradas: d.results, cargandoMejores: false }))
+      .then(response => response.json())
+      .then(data => this.setState({ mejorValoradas: data.results, cargandoMejores: false }))
       .catch(() => this.setState({ mejorValoradas: [] }));
   }
 
