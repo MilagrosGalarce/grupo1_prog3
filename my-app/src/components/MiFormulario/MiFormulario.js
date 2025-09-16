@@ -11,6 +11,7 @@ class MiFormulario extends Component {
 
   controlarForm = (evento) => {
     evento.preventDefault();
+    console.log("Enviando formulario")
     this.props.history.push('/resultados/' + this.state.busqueda + "/" + this.state.tipo);
   };
 
@@ -20,6 +21,7 @@ class MiFormulario extends Component {
 
    controlarRadio = (evento) => {
     this.setState({ tipo: evento.target.value });
+    
   };
 
 
