@@ -18,7 +18,10 @@ class Card extends Component {
     let recuperoFavoritos = localStorage.getItem('favoritos');
     let favoritosParseados = JSON.parse(recuperoFavoritos);
 
-    
+    let coincidencias = favoritosParseados.filter(function(favorito) {
+      return favorito.id == this.state.informacionItem.id && favorito.type == this.state.type;
+    })
+
 
     if (favoritosParseados) {
       if (favoritosParseados.includes(this.state.informacionItem.id)) {

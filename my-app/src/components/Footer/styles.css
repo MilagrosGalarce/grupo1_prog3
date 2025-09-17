@@ -5,8 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;                 
-  background: #fff;          
+  gap: 16px;
+  background: #fff;
   border-top: 1px solid #eaeaea;
   color: #555;
   font-size: 14px;
@@ -14,7 +14,9 @@
 
 .footerList li {
   margin: 0;
-  white-space: nowrap;       
+  white-space: nowrap;
+  color: #333;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
