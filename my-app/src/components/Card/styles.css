@@ -160,8 +160,16 @@ nav {
   color: #202124;
 }
 
-@media(min-width: 768px){
-    nav {
-        grid-template-columns: 4fr 3fr;
-    }
+
+
+@media (min-width: 768px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas sí o sí */
+    gap: 20px;
+  }
+
+  .single-card-movie {
+    width: 100%; /* ocupa toda su celda */
+  }
 }

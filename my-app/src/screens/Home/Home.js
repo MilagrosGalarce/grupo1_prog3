@@ -32,7 +32,7 @@ class Home extends Component {
   render() {
     return (
       <main className="container">
-        <h1>UdeSA Movies</h1>
+        <h1>UdeSA Peliculas</h1>
         {
           this.state.cargandoMasVistas ? <h1>Cargando...</h1> :
             <Secciones
