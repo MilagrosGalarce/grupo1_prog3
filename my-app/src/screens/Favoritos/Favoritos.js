@@ -23,7 +23,7 @@ class Favoritos extends Component {
         if (favoritosParseados.length > 0) {
             for (let i = 0; i < favoritosParseados.length; i++) {
               let favorito = favoritosParseados[i];
-              const tipo = favorito.type === 'serie' ? 'tv' : favorito.type;
+              let tipo = favorito.type === 'serie' ? 'tv' : favorito.type;
       
               fetch(`https://api.themoviedb.org/3/${tipo}/${favorito.id}?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES`)
                 .then(response => response.json())
@@ -31,8 +31,8 @@ class Favoritos extends Component {
 
                     this.setState(function(prevState) {
                       let nuevosItems = [];
-                      for (let i = 0; i < prevState.items.length; i++) {
-                        nuevosItems.push(prevState.items[i]);
+                      for (let j = 0; j < prevState.items.length; j++) {
+                        nuevosItems.push(prevState.items[j]);
                       }
                       nuevosItems.push({
                         id: data.id,
@@ -62,20 +62,13 @@ class Favoritos extends Component {
     if (items.length === 0) return <h2>No seleccionaste ningun favorito.</h2>;
   
     return (
-        <section className="grid-cards">
-          {items.map((item) => {
-            let titulo = item.title || item.name; 
-            let poster = item.poster_path
-              ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
-              : 'https://via.placeholder.com/342x513?text=Sin+Imagen';
-
-              <article key={item.id} className="single-card-movie">
-                <img src={poster} alt={titulo} className="card-img-top" />
-                <h5 className="card-title">{titulo}</h5>
-                <Card data={item} type={item.type} />
-              </article>
-  })};
-          </section>
+      <section className="grid-cards">
+        {items.map((item) => (
+          <Card key={item.id} 
+          data={item} 
+          type={item.type} />
+        ))}
+      </section>
       );
     }
   
