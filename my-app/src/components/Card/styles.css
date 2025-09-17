@@ -160,7 +160,7 @@ nav {
   color: #202124;
 }
 
-@media(min-width: 765px){
+@media(min-width: 768px){
     nav {
         grid-template-columns: 4fr 3fr;
     }

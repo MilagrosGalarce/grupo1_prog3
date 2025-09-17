@@ -95,7 +95,7 @@ form label {
   opacity: 0.9;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 768px) {
   nav {
     grid-template-columns: auto auto;
     grid-template-areas:
