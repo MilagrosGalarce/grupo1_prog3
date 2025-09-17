@@ -58,8 +58,8 @@ class Movies extends Component {
     render() {
         return (
             <div>
-                <h1>Películas</h1>
-                <Filtro value={this.state.busqueda} onFiltrar={this.filtro} />
+                <h1 class='titulo'>Películas</h1>
+                <Filtro value={this.state.busqueda} onFiltrar={this.filtro} class='filtro'/>
                 {this.state.pedidoInicialCompleto ? (
                     <>
                         <div className="cards row">
@@ -70,7 +70,7 @@ class Movies extends Component {
                                 : <p>No hay resultados.</p>}
                         </div>
                         {this.state.busqueda === '' && (
-                            <button onClick={this.cargarMas}>Cargar más</button>
+                            <button onClick={this.cargarMas} class='cargarMas'>Cargar más</button>
                         )}
                     </>
                 ) : (

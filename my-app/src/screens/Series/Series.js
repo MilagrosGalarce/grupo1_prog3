@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Card from '../../components/Card/Card'
 import Filtro from '../../components/Filtro/Filtro'
+import './styles.css';
 
 class Series extends Component {
     constructor(props) {
@@ -59,7 +60,7 @@ class Series extends Component {
     render() {
         return (
             <div>
-                <h1>Series</h1>
+                <h1 class="titulo">Series</h1>
                 <Filtro value={this.state.busqueda} onFiltrar={this.filtro} />
 
                 {this.state.pedidoInicialCompleto ? (
@@ -72,7 +73,7 @@ class Series extends Component {
                                 : <p>No hay resultados.</p>}
                         </div>
                         {this.state.busqueda === '' && (
-                            <button onClick={this.cargarMas}>Cargar más</button>
+                            <button onClick={this.cargarMas} class='cargarMas'>Cargar más</button>
                         )}
                     </>
                 ) : (

@@ -1,0 +1,24 @@
+.titulo{
+    text-align: center;
+}
+.cargarMas{
+  display: block;
+  margin: 30px auto; 
+  width: 800px;       
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #111;           
+  color: #fff;
+  border: none;
+  border-radius: 999px;       
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);    
+}
+.filtro{
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    background: aliceblue;
+}

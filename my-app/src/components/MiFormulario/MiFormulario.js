@@ -27,13 +27,14 @@ class MiFormulario extends Component {
 
   render() {
     return (
-      <form onSubmit={this.controlarForm} className="search-form">
+      <form onSubmit={this.controlarForm} className="">
         <input
           type="text"
           placeholder="Buscar…"
           value={this.state.busqueda}
           onChange={this.controlarInput}
           name="searchData"
+          className='search'
         />
         <label>Movies</label>
         <input
@@ -41,7 +42,7 @@ class MiFormulario extends Component {
           name = "tipo"
           onChange = {this.controlarRadio}
           value = "movie"
-        
+          className='search'
         />
         <label>Series</label>
         <input
@@ -49,8 +50,9 @@ class MiFormulario extends Component {
           name = "tipo"
           onChange = {this.controlarRadio}
           value = "tv"
+          className='search'
         />
-        <button type="submit" className="btn btn-success btn-sm">Search</button>
+        <button type="submit" className="boton">Search</button>
       </form>
     );
   }

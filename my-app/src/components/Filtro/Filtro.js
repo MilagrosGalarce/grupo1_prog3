@@ -6,7 +6,7 @@ function Filtro(props) {
     <form className="search-form" onSubmit={(elm) => elm.preventDefault()}>
       <input
         type="text"
-        placeholder="Buscar…"
+        placeholder="Filtrar..."
         value={props.value}
         onChange={(e) => props.onFiltrar(e.target.value)}
       />
