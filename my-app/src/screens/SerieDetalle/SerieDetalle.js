@@ -20,7 +20,7 @@ class SerieDetalle extends Component {
 
   componentDidUpdate(prevProps) {
       let id = this.props.match.params.id;
-      if (prevProps.match.params.id != id) 
+      if (prevProps.match.params.id !== id) 
         this.cargar();
     }
   
@@ -55,7 +55,7 @@ toggleVerMas() {
 }
 
   render() {
-    const { item, type, error, loading } = this.state;
+    const { item, error, loading } = this.state;
 
     if (loading) 
       return <div className="detalle-container"><h2>Cargando...</h2></div>;
@@ -68,8 +68,8 @@ toggleVerMas() {
     let fecha =  item.first_air_date || 'No se ha publicado una fecha de estreno para esta serie.';
     let poster = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '';
     let rating = item.vote_average || 'No se han publicado ratings para esta serie.';
-    let generos = (item.genres || []).map(genero => 
-      (<li> {genero.name} </li>) || 'No se ha encontrado un genero para esta serie.');
+    let generos = (item.genres || []).map(genero => (
+      <li key={genero.id}>{genero.name}</li>));
     let sinopsis = item.overview || 'Sin descripción.';
 
     return (

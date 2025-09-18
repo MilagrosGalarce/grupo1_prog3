@@ -20,7 +20,7 @@ class MovieDetalle extends Component {
 
   componentDidUpdate(prevProps) {
       let id = this.props.match.params.id;
-      if (prevProps.match.params.id != id) 
+      if (prevProps.match.params.id !== id) 
         this.cargar();
     }
   
@@ -68,8 +68,8 @@ toggleVerMas() {
     let fecha = item.release_date || 'No se ha publicado una fecha de estreno para esta pelicula.';
     let poster = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '';
     let rating = item.vote_average || 'No se han publicado ratings para esta pelicula.';
-    let generos = (item.genres || []).map(genero => 
-      (<li> {genero.name} </li>) || 'No se ha encontrado un genero para esta pelicula.');
+    let generos = (item.genres || []).map(genero => (
+      <li key={genero.id}>{genero.name}</li>));
     let sinopsis = item.overview || 'Sin descripción.';
     let duracion = `${item.runtime} minutos` || 'No se ha publicado la duracion de esta pelicula.';
 

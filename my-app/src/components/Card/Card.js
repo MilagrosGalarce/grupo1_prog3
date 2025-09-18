@@ -12,24 +12,26 @@ class Card extends Component {
       informacionItem: props.data,
       textoFavorito: 'Agregar a favoritos'
     };
+  }
 
-  }Fsingl
   componentDidMount() {
-    let recuperoFavoritos = localStorage.getItem('favoritos');
-    let favoritosParseados = JSON.parse(recuperoFavoritos);
+    let recuperoFavoritos = localStorage.getItem('favoritos') || "[]";
+    let favoritosParseados = JSON.parse(recuperoFavoritos)
 
-    let coincidencias = favoritosParseados.filter(function(favorito) {
-      return favorito.id == this.state.informacionItem.id && favorito.type == this.state.type;
-    })
+    let item = this.state.informacionItem || {};
 
+    let type = this.props.type ? this.props.type 
+        : (item && item.name && !item.title 
+          ? 'serie' : 'movie');
 
-    if (favoritosParseados) {
-      if (favoritosParseados.includes(this.state.informacionItem.id)) {
+    let coincidencias = favoritosParseados.filter(favorito =>
+      favorito && favorito.id === item.id && favorito.type === type
+    );
+
+    if (coincidencias.length > 0) {
         this.setState({esFavorito : true})
       }
     }
-
-   }
 
   verMasVerMenos() {
     this.setState({
@@ -38,38 +40,55 @@ class Card extends Component {
     });
   }
 
-
   agregarFavorito(id) {
-
     console.log(id)
-    let recuperoFavoritos = localStorage.getItem('favoritos');
-    if (recuperoFavoritos == null) {
-      let favoritos = [id];
+    let item = this.state.informacionItem;
+    let recuperoFavoritos = localStorage.getItem('favoritos') || "[]";
+
+    let type = this.props.type ? this.props.type 
+        : (item && item.name && !item.title 
+          ? 'serie' : 'movie');
+
+    if (!recuperoFavoritos) {
+      let favoritos = [{id, type}];
       let favoritosToString = JSON.stringify(favoritos);
+
       localStorage.setItem('favoritos', favoritosToString);
       this.setState({
         esFavorito: true
       });
     } else {
+      let idFavorito = this.state.informacionItem.id;
+      let typeFavorito = this.props.type;
       let favoritosParseados = JSON.parse(recuperoFavoritos);
-      favoritosParseados.push(id)
-      let favoritosToString = JSON.stringify(favoritosParseados);
-      localStorage.setItem('favoritos', favoritosToString);
-      this.setState({
-        esFavorito: true
-      });
-    }
-    
 
-  };
+      let coincidencias = favoritosParseados.filter(function(favorito) {
+        return favorito.id === idFavorito && favorito.type === typeFavorito;
+      })
+  
+      if (coincidencias.length === 0) {
+        favoritosParseados.push({ id: id, type: type})
+        let favoritosToString = JSON.stringify(favoritosParseados);
+        localStorage.setItem('favoritos', favoritosToString)}
+
+        this.setState({
+          esFavorito: true
+        })
+     }
+    }
 
   sacarFavorito(id) {
-    let recuperoFavoritos = localStorage.getItem('favoritos');
+    let item = this.state.informacionItem;
+
+    let type = this.props.type ? this.props.type 
+        : (item && item.name && !item.title 
+          ? 'serie' : 'movie');
+    let recuperoFavoritos = localStorage.getItem('favoritos') || "[]";
     let favoritosParseados = JSON.parse(recuperoFavoritos);
 
     let filtroFavoritos =  favoritosParseados.filter(
       function (filtrado) {
-        return  filtrado !== id
+        return  filtrado.id !== id || filtrado.type !== type; 
       }
     )
 
@@ -84,9 +103,14 @@ class Card extends Component {
   }
   
   render() {
-    const item = this.state.informacionItem;
-    const titulo = item.title || item.name;
-    let verificacion = this.props.type == 'serie' ? `/serie/detalle/${item.id}` : `/movie/detalle/${item.id}`;
+    let item = this.state.informacionItem;
+    let titulo = item.title || item.name;
+
+    let type = this.props.type || (item && item.name && !item.title ? 'serie' : 'movie');
+    let verificacion = (type === 'tv' || type === 'serie')
+      ? `/serie/detalle/${item.id}`
+      : `/movie/detalle/${item.id}`;
+
 
     return (
       <article className="single-card-movie">

@@ -1,71 +1,57 @@
-.detalle-container {
-    background: #ffffff;
-    border: 1px #e6e8eb;
-    border-radius: 14px;
-    padding: 20px;
-    margin: 20px;
-    max-width: 800px;
-    display: grid;
-    gap: 16px;
-  }
-
-  ul {
-    display: flex;
-  }
-  
-  ul li {
-    margin-right: 16px;   
-    margin-bottom: 16px;
-  }
-  
-  .detalle-container h1 {
-    font-size: 24px;
-    font-weight: 700;
-    color: #202124;
-    margin: 0;
+   .detalle-container{
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 640px;
+    margin: 24px auto;
+    display: block;       
+    flex: 0 0 auto;      
+    align-self: center;   
+    justify-self: center;  
+    background: #fff;
+    border: 1px solid #e6e8eb;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: 16px;
     text-align: center;
   }
   
-  .detalle-container img {
-    width: 100%;
-    max-width: 320px;
-    border-radius: 10px;
-    justify-self: center;
+  .detalle-container h1{
+    margin-bottom: 35px;
+    font-size: 28px;
   }
   
-  .detalle-container p {
-    font-size: 15px;
-    line-height: 25px;
-    color: #606a75;
-    margin: 0;
-    display: flex;
+  .detalle-container .card-img-top{
+    display: block;
+    margin: 0 auto 16px;  
+    width: auto;          
+    max-width: 360px;
+    height: auto;
+    border-radius: 12px;
   }
   
-  .detalle-container ul {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
+  .detalle-container p{
+    margin: 0 0 12px 0;
+    color: #444;
+    text-align: left;
   }
   
-  .detalle-container li {
-    background: #f6f7f9;
-    border: 1px solid #e2e5ea;
-    border-radius: 999px;
-    padding: 4px 10px;
-    font-size: 13px;
-    color: #202124;
-    margin-right: 20px;
-    margin: 4px;
-  }
-  
-  @media (min-width: 768px) {
-    .detalle-container {
-      align-items: start;
-    }
-  
-    .detalle-container img {
-      margin-right: 20px;
-    }
+  @media (max-width: 420px){
+
+    .detalle-container{ 
+        max-width:100%;
+         margin:12px auto;
+          padding:12px;
+           border-radius:10px;
+         }
+
+    .detalle-container .card-img-top{
+         max-width:100%;
+          border-radius:10px;
+         }
+
+    .detalle-container h1{
+         font-size:20px;
+          margin-bottom:10px;
+         }
   }
   

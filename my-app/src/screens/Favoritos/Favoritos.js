@@ -14,45 +14,42 @@ class Favoritos extends Component {
   }
 
   componentDidMount() {
-    let recuperoFavoritos = localStorage.getItem('favoritos');
+    let recuperoFavoritos = localStorage.getItem('favoritos') || "[]";
+    let favoritosParseados = JSON.parse(recuperoFavoritos);
 
-    if (recuperoFavoritos != null) {
+    if (!favoritosParseados || favoritosParseados.length === 0) {
+       this.setState({ items: [], loading: false });
+       return;
+    }
 
-        let favoritosParseados = JSON.parse(recuperoFavoritos);
-
-        if (favoritosParseados.length > 0) {
-            for (let i = 0; i < favoritosParseados.length; i++) {
-              let favorito = favoritosParseados[i];
-              let tipo = favorito.type === 'serie' ? 'tv' : favorito.type;
+        for (let i = 0; i < favoritosParseados.length; i++) {
+          let favorito = favoritosParseados[i];
+          let tipo = favorito.type === 'serie' ? 'tv' : favorito.type;
       
-              fetch(`https://api.themoviedb.org/3/${tipo}/${favorito.id}?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES`)
-                .then(response => response.json())
-                .then(data => {
+          fetch(`https://api.themoviedb.org/3/${tipo}/${favorito.id}?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES`)
+            .then(response => response.json())
+            .then(data => {
 
-                    this.setState(function(prevState) {
-                      let nuevosItems = [];
-                      for (let j = 0; j < prevState.items.length; j++) {
-                        nuevosItems.push(prevState.items[j]);
-                      }
-                      nuevosItems.push({
-                        id: data.id,
-                        title: data.title,
-                        name: data.name,
-                        poster_path: data.poster_path,
-                        type: favorito.type
-                      });
-                      return { items: nuevosItems, loading: false };
-                    });
-
-                  })
-                .catch(() => {
-                  this.setState({ loading: false, error: 'No se pudo cargar un favorito.' });
+                this.setState(function(prevState) {
+                  let nuevosItems = [];
+                  for (let j = 0; j < prevState.items.length; j++) {
+                    nuevosItems.push(prevState.items[j]);
+                  }
+                  nuevosItems.push({
+                    id: data.id,
+                    title: data.title,
+                    name: data.name,
+                    poster_path: data.poster_path,
+                    type: favorito.type
+                  });
+                  return { items: nuevosItems, loading: false };
                 });
-            }
-          } else {
-            this.setState({ items: [], loading: false });
-          }}
-  }
+
+              })
+            .catch(() => {
+              this.setState({ loading: false, error: 'No se pudo cargar un favorito.' });
+            });
+        }}
 
   render () {
     const { items, loading, error } = this.state;
@@ -64,7 +61,7 @@ class Favoritos extends Component {
     return (
       <section className="grid-cards">
         {items.map((item) => (
-          <Card key={item.id} 
+          <Card key={`${item.type}-${item.id}`}
           data={item} 
           type={item.type} />
         ))}
