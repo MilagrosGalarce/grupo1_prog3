@@ -13,7 +13,7 @@ function Secciones({ titulo, videos, toAll }) {
 
       <div className="cards row">
         {videos && videos.length
-          ? videos.map((item, idx) => (  <Card key={item.id} data={item} />))
+          ? videos.map((item, idx) => (  <Card key={idx} data={item} />))
           : <p>No hay resultados.</p>}
       </div>
     </section>
