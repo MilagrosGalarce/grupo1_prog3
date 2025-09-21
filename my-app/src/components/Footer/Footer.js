@@ -3,6 +3,7 @@ import './styles.css';
 
 function Footer() {
   return (
+    <footer>
       <ul className="footerList">
         <li>
             Manuela Judez Rivas
@@ -13,7 +14,10 @@ function Footer() {
         <li>
             Catalina Goyanarte
         </li>
-      </ul>
+        </ul>
+    </footer>
+      
+      
   );
 }
 
