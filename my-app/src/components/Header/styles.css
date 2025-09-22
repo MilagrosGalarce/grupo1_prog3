@@ -86,18 +86,28 @@ form label {
 
 @media (max-width: 768px) {
   nav {
-    grid-template-columns: auto auto;
-    row-gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 
   .padreHeader {
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
 
   form {
+    width: 100%;
     justify-content: center;
-    flex-wrap: wrap;
+  }
+
+  .search {
+    width: 90%;
+  }
+
+  .boton {
+    width: auto;
   }
 }
-
-
