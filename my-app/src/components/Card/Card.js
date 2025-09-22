@@ -8,7 +8,7 @@ class Card extends Component {
     this.state = {
       esFavorito: false,
       verMas: false,
-      textoBoton: 'See description',
+      textoBoton: 'Ver descripcion',
       informacionItem: props.data,
       textoFavorito: 'Agregar a favoritos'
     };
@@ -36,7 +36,7 @@ class Card extends Component {
   verMasVerMenos() {
     this.setState({
       verMas: !this.state.verMas,
-      textoBoton: this.state.textoBoton === 'See description' ? 'See less' : 'See description'
+      textoBoton: this.state.textoBoton === 'Ver descripcion' ? 'Ver menos' : 'Ver descripcion'
     });
   }
 

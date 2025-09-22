@@ -5,12 +5,6 @@ html, body, #root {
   font-family: system-ui,"Segoe UI", Arial, sans-serif;
 }
 
-.container{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 20px 56px;
-}
-
 h1{
   font-size: 30px;
   font-weight: 800;
