@@ -10,7 +10,8 @@ class SerieDetalle extends Component {
       verMas: false,
       textoBoton: 'Ver mas',
       error: '',
-      loading: true
+      loading: true,
+      idActual: null
     };
   }
 
@@ -20,10 +21,10 @@ class SerieDetalle extends Component {
 
     componentDidUpdate() {
       let id = this.props.match.params.id;
-      if (this.state.item && this.state.item.id !== id) {
+      if (id !== this.state.idActual) {
         this.cargar();
       }
-    }
+    }  
     
   
     cargar () {
@@ -31,7 +32,8 @@ class SerieDetalle extends Component {
 
       this.setState({
         error: '',
-        loading: true
+        loading: true,
+        idActual: id
       });
 
     fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=f9fed29318027d1571e2d4e385ce272d&language=es-ES`)
