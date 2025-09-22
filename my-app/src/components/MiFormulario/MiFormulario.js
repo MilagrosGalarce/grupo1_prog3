@@ -9,17 +9,19 @@ class MiFormulario extends Component {
 
   }
 
-  controlarForm = (evento) => {
+  controlarForm(evento) {
     evento.preventDefault();
     console.log("Enviando formulario")
-    this.props.history.push('/resultados/' + this.state.busqueda + "/" + this.state.tipo);
+    if (this.state.tipo !== "" && this.state.busqueda.length > 2) {    
+      this.props.history.push('/resultados/' + this.state.busqueda + "/" + this.state.tipo);
+    } 
   };
 
-  controlarInput = (evento) => {
+  controlarInput(evento){
     this.setState({ busqueda: evento.target.value });
   };
 
-   controlarRadio = (evento) => {
+   controlarRadio(evento){
     this.setState({ tipo: evento.target.value });
     
   };
@@ -27,20 +29,20 @@ class MiFormulario extends Component {
 
   render() {
     return (
-      <form onSubmit={this.controlarForm} className="">
+      <form onSubmit={(e) => this.controlarForm(e)} className="">
         <input
           type="text"
           placeholder="Buscar…"
           value={this.state.busqueda}
-          onChange={this.controlarInput}
+          onChange={(e) => this.controlarInput(e)}
           name="searchData"
           className='search'
         />
         <label>Movies</label>
-        <input
+        <input 
           type = "radio"
           name = "tipo"
-          onChange = {this.controlarRadio}
+          onChange = { (e) => this.controlarRadio(e)}
           value = "movie"
           className='search'
         />
@@ -48,7 +50,7 @@ class MiFormulario extends Component {
         <input
           type = "radio"
           name = "tipo"
-          onChange = {this.controlarRadio}
+          onChange = {(e) => this.controlarRadio(e)}
           value = "tv"
           className='search'
         />

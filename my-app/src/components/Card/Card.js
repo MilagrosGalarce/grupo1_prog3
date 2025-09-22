@@ -100,9 +100,16 @@ class Card extends Component {
       });
 
     console.log(filtroFavoritos)
+
+    if (this.props.quitarFavoritos){
+      this.props.quitarFavoritos(id)
+    }
+
+
   }
   
   render() {
+    console.log(this.state.informacionItem)
     let item = this.state.informacionItem;
     let titulo = item.title || item.name;
 

@@ -7,8 +7,6 @@ class MovieDetalle extends Component {
     this.state = {
       item: null,
       type: null,
-      verMas: false,
-      textoBoton: 'Ver mas',
       error: '',
       loading: true,
       idActual: null
@@ -48,15 +46,6 @@ class MovieDetalle extends Component {
         ));
   }
 
-toggleVerMas() {
-  let nuevoVerMas = !this.state.verMas;
-  let nuevoTextoBoton = this.state.textoBoton  === "Ver más" ? "Ver menos" : "Ver más";
-
-  this.setState({
-    verMas: nuevoVerMas,
-    textoBoton: nuevoTextoBoton
-  });
-}
 
   render() {
     const { item, error, loading } = this.state;

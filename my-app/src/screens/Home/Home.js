@@ -38,7 +38,7 @@ class Home extends Component {
             <Secciones
               titulo="Popular movies this week"
               videos={this.state.masVistas.splice(0, 4)}
-              toAll="/movies?mode=popular"
+              to={'/movies'}
             />
 
         }
@@ -47,8 +47,8 @@ class Home extends Component {
           this.state.cargandoMejores ? <h1>Cargando...</h1> :
             <Secciones
               titulo="Top rated movies"
-              videos={this.state.mejorValoradas.splice(0, 4)}
-              toAll="/movies?mode=top_rated" />
+              videos={this.state.mejorValoradas.splice(0, 4)} 
+                to={'/series'}/>
         }
 
 

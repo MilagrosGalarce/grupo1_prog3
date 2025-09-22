@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 import './styles.css';
 
-function Secciones({ titulo, videos, toAll }) {
+function Secciones({ titulo, videos,to }) {
   return (
     <section>
       <div className="d-flex justify-content-between align-items-baseline">
         <h2>{titulo}</h2>
-        {toAll == false ? "" :  <Link to={toAll} className="vertodo">Ver todas</Link>} 
+        <Link to={to} className="vertodo">Ver todas</Link>
       </div>
 
       <div className="cards row">
