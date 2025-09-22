@@ -30,11 +30,8 @@ class Favoritos extends Component {
             .then(response => response.json())
             .then(data => {
 
-                this.setState(function(prevState) {
-                  let nuevosItems = [];
-                  for (let j = 0; j < prevState.items.length; j++) {
-                    nuevosItems.push(prevState.items[j]);
-                  }
+                  let nuevosItems = this.state.items;
+                
                   nuevosItems.push({
                     id: data.id,
                     title: data.title,
@@ -42,10 +39,9 @@ class Favoritos extends Component {
                     poster_path: data.poster_path,
                     type: favorito.type
                   });
-                  return { items: nuevosItems, loading: false };
-                });
+                  this.setState({ items: nuevosItems, loading: false });
+                })
 
-              })
             .catch(() => {
               this.setState({ loading: false, error: 'No se pudo cargar un favorito.' });
             });

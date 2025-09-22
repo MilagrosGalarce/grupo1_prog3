@@ -18,19 +18,17 @@ class MovieDetalle extends Component {
      this.cargar(); 
     }
 
-  componentDidUpdate(prevProps) {
+    componentDidUpdate() {
       let id = this.props.match.params.id;
-      if (prevProps.match.params.id !== id) 
+      if (this.state.item && this.state.item.id !== id) {
         this.cargar();
-    }
+      }
+    }    
   
     cargar () {
       let id = this.props.match.params.id;
 
       this.setState({
-        item: null,
-        type: null,
-        verMas: false,
         error: '',
         loading: true
       });
@@ -48,10 +46,13 @@ class MovieDetalle extends Component {
   }
 
 toggleVerMas() {
-  this.setState((prevState) => ({
-    verMas: !prevState.verMas,
-    textoBoton: prevState.textoBoton === "Ver más" ? "Ver menos" : "Ver más"
-  }));
+  let nuevoVerMas = !this.state.verMas;
+  let nuevoTextoBoton = this.state.textoBoton  === "Ver más" ? "Ver menos" : "Ver más";
+
+  this.setState({
+    verMas: nuevoVerMas,
+    textoBoton: nuevoTextoBoton
+  });
 }
 
   render() {
