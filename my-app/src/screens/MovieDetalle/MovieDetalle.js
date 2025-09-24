@@ -50,12 +50,12 @@ class MovieDetalle extends Component {
   render() {
     const { item, error, loading } = this.state;
 
-    if (loading) 
-      return <div className="detalle-container"><h2>Cargando...</h2></div>;
-    if (error) 
-      return <div className="detalle-container"><p className="error">{error}</p></div>;
-    if (!item) 
-      return null;
+    if (loading) {
+      return <div className="detalle-container"><h2>Cargando...</h2></div>; }
+    if (error) {
+      return <div className="detalle-container"><p className="error">{error}</p></div>; }
+    if (!item) {
+      return null; }
 
     let titulo = item.title || 'No se ha publicado un titulo para esta pelicula';
     let fecha = item.release_date || 'No se ha publicado una fecha de estreno para esta pelicula.';

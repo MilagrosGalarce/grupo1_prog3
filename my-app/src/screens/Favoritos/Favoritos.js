@@ -56,14 +56,12 @@ class Favoritos extends Component {
     this.setState({ items: filtrados });
   }
 
- 
-
   render() {
     const { items, loading, error } = this.state;
 
-    if (loading) return <h2>Cargando favoritos...</h2>;
-    if (error) return <p className="error">{error}</p>;
-    if (items.length === 0) return <h2>No seleccionaste ningun favorito.</h2>;
+    if (loading) { return <h2>Cargando favoritos...</h2>; }
+    if (error) { return <p className="error">{error}</p>; }
+    if (items.length === 0) { return <h2>No seleccionaste ningun favorito.</h2>; }
 
     return (
       <section className="grid-cards">
